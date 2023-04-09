@@ -5,7 +5,10 @@
   <!--   responsiveness for phones we need this next meta tag-->
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
   <title>Home - Shop me admin</title>
+
   <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/fontawesome/all.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/style.css"/>
   <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
@@ -85,13 +88,23 @@
       <tbody>
         <tr th:each="user: ${listUsers}">
           <td>[[${user.id}]]</td>
-          <td></td>
+          <td><span class="fa-solid fa-image-portrait fa-3x icon-silver"></span></td>
           <td>[[${user.email}]]</td>
           <td>[[${user.firstName}]]</td>
           <td>[[${user.lastName}]]</td>
           <td>[[${user.roles}]]</td>
-          <td>[[${user.enabled}]]</td>
-          <td> Edit &nbsp; Delete </td>
+
+          <td>
+            <a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green removeHyperlink" href=""></a>
+            <a th:if="${user.enabled == false}" class="fas fa-check-circle fa-2x icon-dark removeHyperlink" href=""></a>
+
+          </td>
+
+          <td>
+            <a class="fa-solid fa-pen-to-square fa-2x icon-green removeHyperlink" href=""></a>
+            &nbsp;
+            <a class="fa-solid fa-trash fa-2x icon-dark removeHyperlink" href=""></a>
+            </td>
         </tr>
       </tbody>
     </table>
