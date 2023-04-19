@@ -4,6 +4,7 @@ import com.shopMeECommerce.entities.Role;
 import com.shopMeECommerce.entities.User;
 import com.shopMeECommerce.repositories.RoleRepository;
 import com.shopMeECommerce.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
+@Transactional
 public class UserService {
     @Autowired
     private UserRepository userRepo;
@@ -78,6 +80,9 @@ public class UserService {
             throw  new UserNotFoundException("Could not find any user with ID" + id);
         }
         userRepo.deleteById(id);
+    }
+    public void updateUserEnabledStatus(Integer id, boolean enabled){
+        userRepo.updateEnabledStatus(id,enabled);
     }
 
 }
