@@ -55,4 +55,9 @@ public class User {
                 ", roles=" + roles +
                 '}';
     }
+    @Transient // make sure method is not mapped in database
+    public String getPhotosImagePath(){
+        if (id == null || photos == null) return "/images/default-user.png";
+        return "/user-photos/"+this.id + "/" + this.photos;
+    }
 }
