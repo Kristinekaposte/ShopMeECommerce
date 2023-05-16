@@ -1,10 +1,12 @@
 package com.shopMeECommerce.controllers;
 
 import com.shopMeECommerce.classes.FileUploadUtil;
+import com.shopMeECommerce.classes.UserCsvExporter;
 import com.shopMeECommerce.entities.Role;
 import com.shopMeECommerce.entities.User;
 import com.shopMeECommerce.services.UserNotFoundException;
 import com.shopMeECommerce.services.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -141,5 +143,12 @@ public class UserController {
             String message = "The user ID " + id + " has been " + status;
             redirectAttributes.addFlashAttribute("message", message);
         return "redirect:/homeAdmin/users";
+    }
+
+    @GetMapping("/homeAdmin/users/export/csv")
+    public void exportToCSV(HttpServletResponse response) throws IOException {
+       List<User> listUsers = service.listAll();
+        UserCsvExporter exporter = new UserCsvExporter();
+        exporter.export(listUsers,response);
     }
 }

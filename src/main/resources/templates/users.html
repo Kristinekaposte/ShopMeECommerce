@@ -74,6 +74,9 @@
   <div>
     <h2>Manage users</h2>
     <a th:href="@{/homeAdmin/users/new}">Create new user</a>
+    &nbsp; |&nbsp;
+    <a th:href="@{/homeAdmin/users/export/csv}">Export to CSV</a>
+
   </div>
   <div th:if="${message != null}" class="alert alert-success text-center">
     [[${message}]]
