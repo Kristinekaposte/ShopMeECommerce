@@ -3,6 +3,7 @@ package com.shopMeECommerce.controllers;
 import com.shopMeECommerce.classes.FileUploadUtil;
 import com.shopMeECommerce.classes.UserCsvExporter;
 import com.shopMeECommerce.classes.UserExcelExporter;
+import com.shopMeECommerce.classes.UserPdfExporter;
 import com.shopMeECommerce.entities.Role;
 import com.shopMeECommerce.entities.User;
 import com.shopMeECommerce.services.UserNotFoundException;
@@ -157,6 +158,13 @@ public class UserController {
     public void exportToExcel(HttpServletResponse response) throws IOException {
         List<User> listUsers = service.listAll();
         UserExcelExporter exporter = new UserExcelExporter();
+        exporter.export(listUsers,response);
+    }
+
+    @GetMapping("/homeAdmin/users/export/pdf")
+    public void exportToPDF(HttpServletResponse response) throws IOException {
+        List<User> listUsers = service.listAll();
+        UserPdfExporter exporter = new UserPdfExporter();
         exporter.export(listUsers,response);
     }
 }
