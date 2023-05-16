@@ -5,3 +5,20 @@
 .removeHyperlink {
    text-decoration: none;
 }
+
+@media screen and (max-width: 768px){
+/*small screen */
+   div.full-details {display: none}   /*will not be visible on small screen */
+   div.less-details{display: block}
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+   /*medium screen */
+   div.full-details {display: block;} /*will  be visible on medium screen */
+   div.less-details{display: none}
+   .hideable-column {display: none}
+}
+@media screen and (min-width: 1024px) {
+   /*large screen by default will be visible */
+   div.less-details{display: none} /* on large screen will be not visible */
+   .hideable-column {display: table-cell}
+}
