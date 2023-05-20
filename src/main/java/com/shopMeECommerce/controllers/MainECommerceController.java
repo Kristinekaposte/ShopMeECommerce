@@ -7,5 +7,11 @@ public class MainECommerceController {
     @GetMapping("")
     public String viewHomePage() throws Exception{
         return "index.html";
+      //  return "indexAdmin.html";
+    }
+
+    @GetMapping("/homeAdmin/login")
+    public String viewLoginPage() throws Exception{
+        return "login";
     }
 }
